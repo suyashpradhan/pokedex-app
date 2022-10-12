@@ -2,18 +2,18 @@
 
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Button } from './components/Button';
 
 function App() {
 	const { data, isLoading } = useQuery(['pokemon'], () =>
-		fetch('https://pokeapi.co/api/v2/pokemon/?limit=20').then((res) => res.json()),
+		fetch('https://pokeapi.co/api/v2/pokemon/18').then((res) => res.json()),
 	);
 
-	console.log(data);
-
 	return (
-		<div className='App'>
-			{isLoading ? <p>loading...</p> : data?.results?.map((d: any) => <h4>{d?.name}</h4>)}
-		</div>
+		<>
+			<div className='App'>{isLoading ? <p>loading...</p> : <h4>{data.name}</h4>}</div>
+			<Button />
+		</>
 	);
 }
 
